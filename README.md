@@ -24,18 +24,18 @@
 | ------------------ | ---------- | ------------------------------ |
 | item_name          | string     | null: false                    |
 | item_description   | text       | null: false                    |
-| category           | string     | null: false                    |
-| status             | string     | null: false                    |
-| delivery_fee       | string     | null: false                    |
-| ship_from          | string     | null: false                    |
-| ship_days          | string     | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| delivery_fee_id    | integer    | null: false                    |
+| ship_from_id       | integer    | null: false                    |
+| ship_day_id        | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
+- has_one :purchase
 
 ## purchases テーブル
 
@@ -43,26 +43,25 @@
 | ------------------ | ---------- | ------------------------------ |
 | item               | references | null: false, foreign_key: true |
 | user               | references | null: false, foreign_key: true |
-| address            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
+- has_one :address
 
 ## addresses テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postal_code        | integer    | null: false                    |
-| prefectures        | string     | null: false                    |
+| postal_code        | string     | null: false                    |
+| ship_from_id       | integer    | null: false                    |
 | city_name          | string     | null: false                    |
 | street             | string     | null: false                    |
-| building_name      | string     | null: false                    |
-| phone_number       | integer    | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
 | purchase           | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :purchase
