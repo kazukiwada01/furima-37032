@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
+
   def purchase_item
     redirect_to action: :index if @item.user_id != current_user.id || !@item.purchase.nil?
   end
