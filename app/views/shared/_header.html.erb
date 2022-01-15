@@ -2,17 +2,17 @@
 <header class='top-page-header'>
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
-    <form class="search-form" action="#">
-      <input class='input-box' placeholder='キーワードから探す'>
+    <%= form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "input-box" %>
       <button class="search-button">
         <%= image_tag "search.png", class:"search-icon" %>
       </button>
-    </form>
+    <% end %>
   </div>
   <div class='nav'>
     <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
+      <li class="category-list" id="category-list">カテゴリー</li>
+      <li class="brand-list" id="brand-list">ブランド</li>
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
